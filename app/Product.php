@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Rating', 'relation_id', 'product_id');
     }
+
+    public function viewers()
+    {
+        return $this->hasMany('App\Viewer', 'relation_id', 'product_id');
+    }
 }
