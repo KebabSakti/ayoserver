@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2020 at 07:06 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- Generation Time: Sep 24, 2020 at 09:14 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,8 +45,8 @@ CREATE TABLE `banner_slides` (
 --
 
 INSERT INTO `banner_slides` (`id`, `promo_id`, `main_category_id`, `url`, `home`, `active`, `link`, `created_at`, `updated_at`) VALUES
-(1, 'f86abcefda90a6fab04c563de7c4aba0', NULL, 'https://source.unsplash.com/random/500x500', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
-(2, '6dbb5ed49463863dcf558ad009923f03', NULL, 'https://source.unsplash.com/random/500x500', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
+(1, 'f86abcefda90a6fab04c563de7c4aba0', NULL, 'https://images.unsplash.com/photo-1600136842912-c1d73071c733?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
+(2, '6dbb5ed49463863dcf558ad009923f03', NULL, 'https://images.unsplash.com/photo-1598602055533-04e934ea2f09?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixlib=rb-1.2.1&q=80&w=500', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
 (3, '6430a990ad07dc86137100f1ea44b94a', NULL, 'https://images.unsplash.com/photo-1595116971898-300194333127?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
 (4, '72d1a43eea2aac9f0c2204e0187bdccd', NULL, 'https://images.unsplash.com/photo-1581688084891-0cae8ad52111?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
 (5, '7153d64c983b75ed4da5e9f78f63d1c4', NULL, 'https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80', 1, 1, NULL, '2020-09-21 05:01:06', '2020-09-21 05:01:06'),
@@ -84,7 +84,10 @@ INSERT INTO `customers` (`id`, `user_id`, `name`, `phone`, `password`, `active`,
 (7, '5874fd60379fbb7de09507e6d1a2cd1c', NULL, NULL, '$2y$10$rN/8nC7rNbcDgGLI6jYfmuzA8B7UDFJWYiZobMXlUWWD0LtWtLRYG', 1, 'guest', '2020-09-22 07:57:14', '2020-09-22 07:57:14'),
 (8, 'cc8c8b7e7b302171041aab0522e30180', NULL, NULL, '$2y$10$xLnxTWHMY.3XIEoWOHEdme8HyhSPB2pu5DDgHv/ki8l/lvABWaq8G', 1, 'guest', '2020-09-22 21:22:23', '2020-09-22 21:22:23'),
 (9, '76ceb4100e141a6ece82941042db0258', NULL, NULL, '$2y$10$xR2j8H7IcgwgdIaN9.1UCe6ZBhtGKIAEbnXhseP67ezNqyJIwwgpq', 1, 'guest', '2020-09-23 00:17:08', '2020-09-23 00:17:08'),
-(10, '6adc4da36f9395add5822e4d8b5d8e47', NULL, NULL, '$2y$10$Jen3PIcdZVb9Lnns7pXeP.eWfh3wxu4CgCpDEv.wB4Uz5NHy7nnYe', 1, 'guest', '2020-09-23 07:03:20', '2020-09-23 07:03:20');
+(10, '6adc4da36f9395add5822e4d8b5d8e47', NULL, NULL, '$2y$10$Jen3PIcdZVb9Lnns7pXeP.eWfh3wxu4CgCpDEv.wB4Uz5NHy7nnYe', 1, 'guest', '2020-09-23 07:03:20', '2020-09-23 07:03:20'),
+(11, '85e2b98bdc98f7df2a7fc8522036349e', NULL, NULL, '$2y$10$Uu7hGcRdzN.RhpWGuL2un.NhzruenbshSggcOszor8vZevjvVkGKm', 1, 'guest', '2020-09-23 10:01:16', '2020-09-23 10:01:16'),
+(12, 'c4b20a1d7913e7a9e452eb07626bbe16', NULL, NULL, '$2y$10$WCXrkkr.KwIdI7bglDc8JeAPEdX/kQEp4p4quHJXyXvBtQSvX5QUq', 1, 'guest', '2020-09-23 19:59:33', '2020-09-23 19:59:33'),
+(13, 'f63f20f73c4951f19a36eadb3383f2f0', NULL, NULL, '$2y$10$oP5pyxr4T1g8WM6AcMsQeulcPtYzG4UFtuiNtZ3N7ack7O1COzGPm', 1, 'guest', '2020-09-23 20:00:02', '2020-09-23 20:00:02');
 
 -- --------------------------------------------------------
 
@@ -143,6 +146,21 @@ INSERT INTO `discounts` (`id`, `discount_id`, `product_id`, `amount`, `expired_a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `favorites`
+--
+
+CREATE TABLE `favorites` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `favorite_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `intro_sliders`
 --
 
@@ -192,8 +210,8 @@ CREATE TABLE `main_categories` (
 --
 
 INSERT INTO `main_categories` (`id`, `main_category_id`, `delivery_type_id`, `title`, `caption`, `image`, `color`, `link`, `active`, `created_at`, `updated_at`) VALUES
-(1, '7898df0c3e209cad60de137176ef7205', 'd33a2617639e4debd73b8c5696996e0b', 'Gas dan perlengkapan kompor', NULL, 'https://cdns.klimg.com/dream.co.id/resized/640x320/news/2019/10/31/121485/memasak-aman-dengan-bright-gas-191031h.jpg', '#fc0af0', NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
-(2, 'bbcb7a4e2129486013d313759f3c183d', '5c5ab7bb9c8725a14b8a14a00e8a998b', 'Sayur, buah dan daging', NULL, 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', '#35ff1f', NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
+(1, '7898df0c3e209cad60de137176ef7205', '5c5ab7bb9c8725a14b8a14a00e8a998b', 'Gas dan perlengkapan kompor', NULL, 'https://cdns.klimg.com/dream.co.id/resized/640x320/news/2019/10/31/121485/memasak-aman-dengan-bright-gas-191031h.jpg', '#fc0af0', NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
+(2, 'bbcb7a4e2129486013d313759f3c183d', 'd33a2617639e4debd73b8c5696996e0b', 'Sayur, buah dan daging', NULL, 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80', '#35ff1f', NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
 (3, '12734174934f59dc196332770725a3fe', 'd33a2617639e4debd73b8c5696996e0b', 'Sembako', NULL, 'http://blog.sayurbox.com/wp-content/uploads/2020/04/paket-sembako-595x458.jpg', NULL, NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
 (4, '0dd0ca593e8df9e0ddced122997a9e4c', 'd33a2617639e4debd73b8c5696996e0b', 'Pakaian', NULL, 'https://wp-en.oberlo.com/wp-content/uploads/2018/04/shutterstock_466589549.jpg', NULL, NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
 (5, '0cd32ec530ed6a9e79874de8f4b09c09', 'd33a2617639e4debd73b8c5696996e0b', 'Hp dan Aksesoris', NULL, 'https://image.cnbcfm.com/api/v1/image/106105342-1567178289995screenshot2019-08-30at11.17.10am.png?v=1567178348&w=740&h=416', NULL, NULL, 1, '2020-09-21 05:58:58', '2020-09-21 05:58:58'),
@@ -229,7 +247,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2020_09_21_173721_create_products_table', 5),
 (12, '2020_09_21_175159_create_sub_categories_table', 6),
 (13, '2020_09_22_152149_create_discounts_table', 7),
-(14, '2020_09_22_174044_create_ratings_table', 8);
+(14, '2020_09_22_174044_create_ratings_table', 8),
+(15, '2020_09_23_180421_create_viewers_table', 9),
+(16, '2020_09_23_180818_create_favorites_table', 9);
 
 -- --------------------------------------------------------
 
@@ -257,10 +277,13 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('17eec1a2cb56ed6502f8e848b4769dcba8456e7a49cbbd1ac54ce23a341bf6ec47df26a0f8c5d8aa', 1, 2, 'Guest Access Token', '[]', 0, '2020-09-20 10:11:31', '2020-09-20 10:11:31', '2030-09-20 18:11:31'),
 ('1f4abad33845adb49bef31a0956badd2cea61fb3e57e605aee763c1b96408206a586c26e3188955d', 3, 2, 'Guest Access Token', '[]', 0, '2020-09-20 10:37:28', '2020-09-20 10:37:28', '2030-09-20 18:37:26'),
 ('4edb9465846b8e9fa32ccaa93cf28ca8b798b59ebd5ab995d737470b69843818c032ba3f52ab9eaa', 10, 2, 'Guest Access Token', '[]', 0, '2020-09-23 07:03:21', '2020-09-23 07:03:21', '2030-09-23 15:03:19'),
+('63e9466b4f0972462f716bc0eec52699242d616c25b59c9db81379e7b8e22a344e2f9c8ceba448af', 13, 4, 'Guest Access Token', '[]', 0, '2020-09-23 20:00:02', '2020-09-23 20:00:02', '2030-09-24 04:00:02'),
 ('6bf5d3213296821ee5d523411cdc6c2aaf832ae683604f546faf0781caae44ced0f37cd954606342', 9, 2, 'Guest Access Token', '[]', 0, '2020-09-23 00:17:09', '2020-09-23 00:17:09', '2030-09-23 08:17:06'),
+('701e3e0978ade84679b2a06d1bdb0369f3760296935beb5629cbabe41841c52262afbc29d17a9a9e', 12, 4, 'Guest Access Token', '[]', 0, '2020-09-23 19:59:35', '2020-09-23 19:59:35', '2030-09-24 03:59:33'),
 ('7f37e29a6de64a24da3d4370a85e744fddc151799431286d9a9585214b666d8816d3779ce3d1147e', 5, 2, 'Guest Access Token', '[]', 0, '2020-09-21 05:32:30', '2020-09-21 05:32:30', '2030-09-21 13:32:29'),
 ('830887336a48b4dd0fae38ad365ac12cbdb4eeed566322e267afe932d3a41fad10c126abd8f406c1', 2, 2, 'Guest Access Token', '[]', 0, '2020-09-20 10:14:48', '2020-09-20 10:14:48', '2030-09-20 18:14:47'),
 ('985f2be5ecba9a000db660ff6961717d58534d7bc9b25c4943cb565fa6916288cc134569420dfe0d', 8, 2, 'Guest Access Token', '[]', 0, '2020-09-22 21:22:24', '2020-09-22 21:22:24', '2030-09-23 05:22:22'),
+('c5008bd6a27017a38f0bed75ae50c37a6e34ffdaa4acdb710414104a91429368a3aa00045d3792ca', 11, 4, 'Guest Access Token', '[]', 0, '2020-09-23 10:01:18', '2020-09-23 10:01:18', '2030-09-23 18:01:14'),
 ('d1809c8601e6fedd17ceae03d9d2d2d2b51469fedacb5701a68db4ffc9fc027084053c45de11a5c3', 6, 2, 'Guest Access Token', '[]', 0, '2020-09-21 08:10:54', '2020-09-21 08:10:54', '2030-09-21 16:10:52'),
 ('d225e96b8bd66b37b909daa7da91f5a0462a83c448f797afc1f5decf46752fa0dd163ad3904db12a', 7, 2, 'Guest Access Token', '[]', 0, '2020-09-22 07:57:14', '2020-09-22 07:57:14', '2030-09-22 15:57:13'),
 ('f20dd1e92705c80aa353dfcccb27047dcc6d6a3c6c68e15fb1b4ed0f58ce5c990cb68324803a7b09', 4, 2, 'Guest Access Token', '[]', 0, '2020-09-20 23:10:43', '2020-09-20 23:10:43', '2030-09-21 07:10:43');
@@ -307,7 +330,9 @@ CREATE TABLE `oauth_clients` (
 INSERT INTO `oauth_clients` (`id`, `user_id`, `name`, `secret`, `provider`, `redirect`, `personal_access_client`, `password_client`, `revoked`, `created_at`, `updated_at`) VALUES
 (1, NULL, 'Laravel Personal Access Client', 'VDtNgeAD7LP0aVS52igaA6sBQ9mZsM4FeXSElCpt', NULL, 'http://localhost', 1, 0, 0, '2020-09-20 10:04:56', '2020-09-20 10:04:56'),
 (2, NULL, 'Laravel Personal Access Client', 'CFxU7nAEbF5vVnLdC5XyGrZVEBBPqdqViQaBMowo', NULL, 'http://localhost', 1, 0, 0, '2020-09-20 10:05:35', '2020-09-20 10:05:35'),
-(3, NULL, 'Laravel Password Grant Client', 'FyfdIgAzkFPiErPxLV3paaCzXzKlF6Lj7iWylZK5', 'customers', 'http://localhost', 0, 1, 0, '2020-09-20 10:05:37', '2020-09-20 10:05:37');
+(3, NULL, 'Laravel Password Grant Client', 'FyfdIgAzkFPiErPxLV3paaCzXzKlF6Lj7iWylZK5', 'customers', 'http://localhost', 0, 1, 0, '2020-09-20 10:05:37', '2020-09-20 10:05:37'),
+(4, NULL, 'Laravel Personal Access Client', '1lr1GQFzo2JBgKb5JQcJyoX2V9UqiaXaxgEFpqNw', NULL, 'http://localhost', 1, 0, 0, '2020-09-23 09:58:08', '2020-09-23 09:58:08'),
+(5, NULL, 'Laravel Password Grant Client', 'BlWwiE6JYPbeQLoBWRNvqx2tutNGXcTO3T95ey6o', 'customers', 'http://localhost', 0, 1, 0, '2020-09-23 09:58:13', '2020-09-23 09:58:13');
 
 -- --------------------------------------------------------
 
@@ -328,7 +353,8 @@ CREATE TABLE `oauth_personal_access_clients` (
 
 INSERT INTO `oauth_personal_access_clients` (`id`, `client_id`, `created_at`, `updated_at`) VALUES
 (1, 1, '2020-09-20 10:04:56', '2020-09-20 10:04:56'),
-(2, 2, '2020-09-20 10:05:35', '2020-09-20 10:05:35');
+(2, 2, '2020-09-20 10:05:35', '2020-09-20 10:05:35'),
+(3, 4, '2020-09-23 09:58:08', '2020-09-23 09:58:08');
 
 -- --------------------------------------------------------
 
@@ -431,6 +457,7 @@ CREATE TABLE `ratings` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `rating_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `relation_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `star` enum('1','2','3','4','5') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '5',
   `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -474,6 +501,21 @@ INSERT INTO `sub_categories` (`id`, `sub_category_id`, `main_category_id`, `titl
 (10, 'd9806a17948f7517327abb81654e62b5', '7898df0c3e209cad60de137176ef7205', 'Sub Kategori 9', NULL, 'https://res.cloudinary.com/vjtechsolution/image/upload/v1600713849/mock/fish-and-chips.png', NULL, NULL, 1, '2020-09-21 10:46:08', '2020-09-21 10:46:08'),
 (11, '941d8a3fc84c1772798a493da8db62fb', '7898df0c3e209cad60de137176ef7205', 'Sub Kategori 10', NULL, 'https://res.cloudinary.com/vjtechsolution/image/upload/v1600713849/mock/fish-and-chips.png', NULL, NULL, 1, '2020-09-21 10:46:08', '2020-09-21 10:46:08');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `viewers`
+--
+
+CREATE TABLE `viewers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `viewer_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `relation_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -500,6 +542,12 @@ ALTER TABLE `delivery_types`
 -- Indexes for table `discounts`
 --
 ALTER TABLE `discounts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `favorites`
+--
+ALTER TABLE `favorites`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -572,6 +620,12 @@ ALTER TABLE `sub_categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `viewers`
+--
+ALTER TABLE `viewers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -585,7 +639,7 @@ ALTER TABLE `banner_slides`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `delivery_types`
@@ -598,6 +652,12 @@ ALTER TABLE `delivery_types`
 --
 ALTER TABLE `discounts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `favorites`
+--
+ALTER TABLE `favorites`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `intro_sliders`
@@ -615,19 +675,19 @@ ALTER TABLE `main_categories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
 --
 ALTER TABLE `oauth_clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `oauth_personal_access_clients`
 --
 ALTER TABLE `oauth_personal_access_clients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -646,6 +706,12 @@ ALTER TABLE `ratings`
 --
 ALTER TABLE `sub_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `viewers`
+--
+ALTER TABLE `viewers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
