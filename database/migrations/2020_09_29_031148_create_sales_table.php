@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveryTypesTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateDeliveryTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_types', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('delivery_type_id');
             $table->string('sale_id');
-            $table->boolean('instant')->default(1);
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
-            $table->text('caption')->nullable();
+            $table->string('customer_id');
+            $table->string('code');
+            $table->string('voucher')->nullable();
+            $table->string('voucher_amount')->nullable();
+            $table->string('sub_total');
+            $table->string('total');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateDeliveryTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_types');
+        Schema::dropIfExists('sales');
     }
 }

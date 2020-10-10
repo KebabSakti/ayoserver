@@ -27,9 +27,21 @@ Route::group(['middleware' => ['auth:api']], function() {
     //INTRO SLIDER
     Route::post('intro_slider', 'IntroSliderController@fetch')->name('intro_slider.fetch');
     //BANNER SLIDER
-    Route::get('banner_slide/target/{target}', 'BannerSlideController@fetch')->name('banner_slide.fetch');
+    Route::post('banner_slide', 'BannerSlideController@fetch')->name('banner_slide.fetch');
     //MAIN CATEGORY
     Route::get('main_category', 'MainCategoryController@fetch')->name('main_category.fetch');
+    //SUB CATEGORY
+    Route::get('sub_category/id/{id}', 'SubCategoryController@fetch')->name('sub_category.fetch');
     //PRODUCT
     Route::post('product/terbaru', 'ProductController@fetchProductTerbaru')->name('product.terbaru.fetch');
+    //MORE PRODUCT
+    Route::post('product', 'ProductController@fetch')->name('product.fetch');
+    //DETAIL PRODUCT
+    Route::post('product/detail', 'ProductController@fetchProductDetail')->name('product.fetchProductDetail');
+    //SHOPPING CART
+    Route::get('cart', 'ShoppingCartController@fetch')->name('cart.fetch');
+    Route::post('cart', 'ShoppingCartController@add')->name('cart.add');
+    Route::post('cart/update', 'ShoppingCartController@update')->name('cart.update');
+    Route::delete('cart/{id}/delete', 'ShoppingCartController@delete')->name('cart.delete');
+    Route::post('cart/clear', 'ShoppingCartController@clear')->name('cart.clear');
 });

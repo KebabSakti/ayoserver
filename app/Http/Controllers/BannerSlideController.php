@@ -7,15 +7,15 @@ use App\BannerSlide;
 
 class BannerSlideController extends Controller
 {
-    public function fetch(Request $request, $target)
+    public function fetch(Request $request)
     {
 
-        if(!empty($target)){
+        if($request->target == 'home'){
             $data = BannerSlide::where('home', 1)
                                ->where('active', 1)
                                ->get();
-        }else{
-            $data = BannerSlide::where('main_category_id', $request->main_category_id)
+        }else if($request->target == 'kategori'){
+            $data = BannerSlide::where('main_category_id', $request->id)
                                ->where('active', 1)        
                                ->get();
         }

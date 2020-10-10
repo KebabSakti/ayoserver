@@ -23,8 +23,43 @@ class Product extends Model
         return $this->hasMany('App\Rating', 'relation_id', 'product_id');
     }
 
-    public function viewers()
+    public function viewer()
     {
-        return $this->hasMany('App\Viewer', 'relation_id', 'product_id');
+        return $this->hasOne('App\Viewer', 'relation_id', 'product_id');
+    }
+
+    public function delivery_type()
+    {
+        return $this->hasOne('App\DeliveryType', 'delivery_type_id', 'delivery_type_id');
+    }
+
+    public function sale_details()
+    {
+        return $this->hasMany('App\SaleDetail', 'product_id', 'product_id');
+    }
+
+    public function rating_weight()
+    {
+        return $this->hasOne('App\RatingWeight', 'relation_id', 'product_id');
+    }
+
+    public function product_sale()
+    {
+        return $this->hasOne('App\ProductSale', 'product_id', 'product_id');
+    }
+
+    public function product_search()
+    {
+        return $this->hasOne('App\ProductSearch', 'product_id', 'product_id');
+    }
+
+    public function unit()
+    {
+        return $this->hasOne('App\Unit', 'unit_id', 'unit_id');
+    }
+
+    public function favourite()
+    {
+        return $this->hasOne('App\Favourite', 'product_id', 'product_id');
     }
 }
