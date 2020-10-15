@@ -24,6 +24,8 @@ use App\ProductSearch;
 use App\Unit;
 use App\Cart;
 use App\Favourite;
+use App\Mitra;
+use App\Courier;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,20 +36,42 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        for($i=1; $i<=10; $i++){
-            $p = Product::inRandomOrder()->first();
-            $q = mt_rand(1, 20);
-            $r = mt_rand(1000, 300000);
-            $t = $r * $q;
-            Cart::create([
-                'cart_id' => IDGenerator::generate(),
-                'user_id' => '5874fd60379fbb7de09507e6d1a2cd1c',
-                'product_id' => $p->product_id,
-                'price' => $r,
-                'qty' => $q,
-                'total' => $t,
+        for($i=0; $i<5; $i++){
+            $mitra = Mitra::create([
+                'mitra_id' => IDGenerator::generate(),
+                'name' => 'Mitra '.$i,
+                'address' => 'Alamat Mitra '.$i,
+                'owner' => 'Owner '.$i,
+                'phone' => '08125498266'.$i,
+                'lat' => '-0.481518',
+                'lng' => '117.132648',
             ]);
+
+            for($x=0; $x<2; $x++){
+                Courier::create([
+                    'courier_id' => IDGenerator::generate(),
+                    'mitra_id' => $mitra->mitra_id,
+                    'name' => 'Corier '.$x,
+                    'phone' => '08521234560'.$x,
+                    'password' => bcrypt('buyung'),
+                ]);
+            }
         }
+
+        // for($i=1; $i<=10; $i++){
+        //     $p = Product::inRandomOrder()->first();
+        //     $q = mt_rand(1, 20);
+        //     $r = mt_rand(1000, 300000);
+        //     $t = $r * $q;
+        //     Cart::create([
+        //         'cart_id' => IDGenerator::generate(),
+        //         'user_id' => '5874fd60379fbb7de09507e6d1a2cd1c',
+        //         'product_id' => $p->product_id,
+        //         'price' => $r,
+        //         'qty' => $q,
+        //         'total' => $t,
+        //     ]);
+        // }
 
         // $names = [
         //     "Orange - Canned, Mandarin",
@@ -177,14 +201,14 @@ class DatabaseSeeder extends Seeder
         //     }
         // }
 
-        for($i=0; $i<=500; $i++){
-            $customer = Customer::inRandomOrder()->first();
-            $produk = Product::inRandomOrder()->first();
-            $sale = Sale::inRandomOrder()->first();
-            $delivery = DeliveryType::inRandomOrder()->first();
-            $qty = mt_rand(1, 100);        
-            $total = $qty * $produk->price;
-            $star = mt_rand(1, 5);
+        // for($i=0; $i<=500; $i++){
+        //     $customer = Customer::inRandomOrder()->first();
+        //     $produk = Product::inRandomOrder()->first();
+        //     $sale = Sale::inRandomOrder()->first();
+        //     $delivery = DeliveryType::inRandomOrder()->first();
+        //     $qty = mt_rand(1, 100);        
+        //     $total = $qty * $produk->price;
+        //     $star = mt_rand(1, 5);
 
         //     // SaleDetail::create([
         //     //     'sale_detail_id' => IDGenerator::generate(),
@@ -215,39 +239,39 @@ class DatabaseSeeder extends Seeder
         //         $rw->increment('view');
         //     }
 
-            $rw = RatingWeight::where('relation_id', $produk->product_id)->first();
-            $one = $star == 1 ? $star:0;
-            $two = $star == 2 ? $star:0;
-            $three = $star == 3 ? $star:0;
-            $four = $star == 4 ? $star:0;
-            $five = $star == 5 ? $star:0;
+        //     $rw = RatingWeight::where('relation_id', $produk->product_id)->first();
+        //     $one = $star == 1 ? $star:0;
+        //     $two = $star == 2 ? $star:0;
+        //     $three = $star == 3 ? $star:0;
+        //     $four = $star == 4 ? $star:0;
+        //     $five = $star == 5 ? $star:0;
 
-            if($rw == null){
-                RatingWeight::create([
-                    'rating_weight_id' => IDGenerator::generate(),
-                    'relation_id' => $produk->product_id,
-                    'one' => $one,
-                    'two' => $two,
-                    'three' => $three,
-                    'four' => $four,
-                    'five' => $five,
-                    'total_vote' => 1,
-                    'rating' => ($one + $two + $three + $four + $five ) / 1,
-                ]);
-            }else{
-                $rw->increment('one', $one);
-                $rw->increment('two', $two);
-                $rw->increment('three', $three);
-                $rw->increment('four', $four);
-                $rw->increment('five', $five);
-                $rw->increment('total_vote');
+        //     if($rw == null){
+        //         RatingWeight::create([
+        //             'rating_weight_id' => IDGenerator::generate(),
+        //             'relation_id' => $produk->product_id,
+        //             'one' => $one,
+        //             'two' => $two,
+        //             'three' => $three,
+        //             'four' => $four,
+        //             'five' => $five,
+        //             'total_vote' => 1,
+        //             'rating' => ($one + $two + $three + $four + $five ) / 1,
+        //         ]);
+        //     }else{
+        //         $rw->increment('one', $one);
+        //         $rw->increment('two', $two);
+        //         $rw->increment('three', $three);
+        //         $rw->increment('four', $four);
+        //         $rw->increment('five', $five);
+        //         $rw->increment('total_vote');
                 
-                $rating = ($rw->one + $rw->two + $rw->three + $rw->four + $rw->five ) / $rw->total_vote;
+        //         $rating = ($rw->one + $rw->two + $rw->three + $rw->four + $rw->five ) / $rw->total_vote;
                 
-                $rw->rating = round($rating, 2);
-                $rw->save();
-            }
-        }   
+        //         $rw->rating = round($rating, 2);
+        //         $rw->save();
+        //     }
+        // }   
         
         // Discount::create([
         //     'discount_id' => IDGenerator::generate(),

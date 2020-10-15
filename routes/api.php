@@ -44,4 +44,6 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('cart/update', 'ShoppingCartController@update')->name('cart.update');
     Route::delete('cart/{id}/delete', 'ShoppingCartController@delete')->name('cart.delete');
     Route::post('cart/clear', 'ShoppingCartController@clear')->name('cart.clear');
+    //MITRA
+    Route::post('mitra', 'MitraController@nearest')->name('mitra.nearest');
 });
