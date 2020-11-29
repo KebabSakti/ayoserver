@@ -36,27 +36,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        for($i=0; $i<5; $i++){
-            $mitra = Mitra::create([
-                'mitra_id' => IDGenerator::generate(),
-                'name' => 'Mitra '.$i,
-                'address' => 'Alamat Mitra '.$i,
-                'owner' => 'Owner '.$i,
-                'phone' => '08125498266'.$i,
-                'lat' => '-0.481518',
-                'lng' => '117.132648',
-            ]);
 
-            for($x=0; $x<2; $x++){
-                Courier::create([
-                    'courier_id' => IDGenerator::generate(),
-                    'mitra_id' => $mitra->mitra_id,
-                    'name' => 'Corier '.$x,
-                    'phone' => '08521234560'.$x,
-                    'password' => bcrypt('buyung'),
-                ]);
-            }
+        $search = Search::all();
+
+        foreach($search as $item) {
+            $userId = Customer::inRandomOrder()->first();
+            Search::where('id', $item->id)->update(['user_id' => $userId->user_id]);
         }
+
+        // for($i=0; $i<5; $i++){
+        //     $mitra = Mitra::create([
+        //         'mitra_id' => IDGenerator::generate(),
+        //         'name' => 'Mitra '.$i,
+        //         'address' => 'Alamat Mitra '.$i,
+        //         'owner' => 'Owner '.$i,
+        //         'phone' => '08125498266'.$i,
+        //         'lat' => '-0.481518',
+        //         'lng' => '117.132648',
+        //     ]);
+
+        //     for($x=0; $x<2; $x++){
+        //         Courier::create([
+        //             'courier_id' => IDGenerator::generate(),
+        //             'mitra_id' => $mitra->mitra_id,
+        //             'name' => 'Corier '.$x,
+        //             'phone' => '08521234560'.$x,
+        //             'password' => bcrypt('buyung'),
+        //         ]);
+        //     }
+        // }
 
         // for($i=1; $i<=10; $i++){
         //     $p = Product::inRandomOrder()->first();

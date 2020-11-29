@@ -34,10 +34,9 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('sub_category/id/{id}', 'SubCategoryController@fetch')->name('sub_category.fetch');
     //PRODUCT
     Route::post('product/terbaru', 'ProductController@fetchProductTerbaru')->name('product.terbaru.fetch');
-    //MORE PRODUCT
     Route::post('product', 'ProductController@fetch')->name('product.fetch');
-    //DETAIL PRODUCT
     Route::post('product/detail', 'ProductController@fetchProductDetail')->name('product.fetchProductDetail');
+    Route::post('product/favourite', 'ProductController@toggleFavourite')->name('product.toggleFavourite');
     //SHOPPING CART
     Route::get('cart', 'ShoppingCartController@fetch')->name('cart.fetch');
     Route::post('cart', 'ShoppingCartController@add')->name('cart.add');
@@ -46,4 +45,11 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('cart/clear', 'ShoppingCartController@clear')->name('cart.clear');
     //MITRA
     Route::post('mitra', 'MitraController@nearest')->name('mitra.nearest');
+    //SEARCH
+    Route::post('search/keyword', 'SearchController@searchByKeyword')->name('search.searchByKeyword');
+    Route::post('search/popular', 'SearchController@mostSearch')->name('search.mostSearch');
+    Route::post('search/history', 'SearchController@searchHistory')->name('search.searchHistory');
+    Route::post('search/seen', 'SearchController@lastSeenProducts')->name('search.lastSeenProducts');
+    Route::post('search/save', 'SearchController@saveSearchKeyword')->name('search.saveSearchKeyword');
+    Route::post('search/clear', 'SearchController@clearSearchKeyword')->name('search.clearSearchKeyword');
 });

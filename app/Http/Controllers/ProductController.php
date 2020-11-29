@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
-
+use App\CustomClass\IDGenerator;
 use App\Product;
+use App\Favourite;
 
 class ProductController extends Controller
 {
@@ -207,5 +208,26 @@ class ProductController extends Controller
         $data->viewer()->increment('view');
 
         return response()->json($data, 200);
+    }
+
+    public function toggleFavourite(Request $request)
+    {
+        $favourite = Favourite::where('product_id', $request->product_id)
+                              ->where('user_id', $request->header('User-Id'))
+                              ->first();
+
+        if(empty($favourite)) {
+            //add
+            Favourite::create([
+                'favourite_id' => IDGenerator::generate(),
+                'product_id' => $request->product_id,
+                'user_id' => $request->header('User-Id'),
+            ]);
+        }else{
+            //clear
+            $favourite->delete();
+        }
+
+        return response()->json(true, 200);
     }
 }
