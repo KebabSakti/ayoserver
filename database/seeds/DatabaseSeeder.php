@@ -26,6 +26,7 @@ use App\Cart;
 use App\Favourite;
 use App\Mitra;
 use App\Courier;
+use App\PaymentChannel;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,12 +38,25 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $search = Search::all();
+        PaymentChannel::create([
+            "business_id" => "5e035db9246aad2a269f2bc3",
+            "is_livemode" => false,
+            "channel_code" => "COD",
+            "name" => "COD Bayar di Tujuan",
+            "currency" => "IDR",
+            "channel_category" => "COD",
+            "is_enabled" => true,
+            "fee_fix" => null,
+            "fee_percentage" => null,
+            "image" => 'https://res.cloudinary.com/vjtechsolution/image/upload/v1607616027/mock/cod.png',
+        ]);
 
-        foreach($search as $item) {
-            $userId = Customer::inRandomOrder()->first();
-            Search::where('id', $item->id)->update(['user_id' => $userId->user_id]);
-        }
+        // $search = Search::all();
+
+        // foreach($search as $item) {
+        //     $userId = Customer::inRandomOrder()->first();
+        //     Search::where('id', $item->id)->update(['user_id' => $userId->user_id]);
+        // }
 
         // for($i=0; $i<5; $i++){
         //     $mitra = Mitra::create([

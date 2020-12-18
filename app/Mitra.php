@@ -12,4 +12,9 @@ class Mitra extends Model
     {
         return $this->hasMany('App\Courier', 'mitra_id', 'mitra_id');
     }
+
+    public function delivery_type()
+    {
+        return $this->hasOne('App\DeliveryType', 'delivery_type_id', 'delivery_type_id');
+    }
 }

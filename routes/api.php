@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//PAYMENT GATEWAY API END POINT
+Route::post('payment', 'PaymentGateway@payment')->name('payment');
+
 //AUTH
 Route::group(['prefix' => 'auth'], function () {  
     //GUEST
@@ -44,7 +47,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::delete('cart/{id}/delete', 'ShoppingCartController@delete')->name('cart.delete');
     Route::post('cart/clear', 'ShoppingCartController@clear')->name('cart.clear');
     //MITRA
-    Route::post('mitra', 'MitraController@nearest')->name('mitra.nearest');
+    Route::post('mitra/nearest', 'MitraController@nearest')->name('mitra.nearest');
     //SEARCH
     Route::post('search/keyword', 'SearchController@searchByKeyword')->name('search.searchByKeyword');
     Route::post('search/popular', 'SearchController@mostSearch')->name('search.mostSearch');
@@ -52,4 +55,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::post('search/seen', 'SearchController@lastSeenProducts')->name('search.lastSeenProducts');
     Route::post('search/save', 'SearchController@saveSearchKeyword')->name('search.saveSearchKeyword');
     Route::post('search/clear', 'SearchController@clearSearchKeyword')->name('search.clearSearchKeyword');
+    //PAYMENT CHANNEL
+    Route::post('paymentchannel/fetch', 'PaymentChannelController@fetch')->name('paymentchannel.fetch');
+
 });
