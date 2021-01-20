@@ -8,90 +8,47 @@ use Illuminate\Database\Eloquent\Builder;
 use App\CustomClass\IDGenerator;
 use App\Product;
 use App\Favourite;
+use App\Viewer;
 
 class ProductController extends Controller
 {
     public function fetchProductTerbaru(Request $request)
     {
-        //filter
-        $kategoriId = $request->kategori_id;
-        $priceMin = $request->price_min;
-        $priceMax = $request->price_max;
-        $instant = $request->instant;
-        $rating = $request->rating;
+        $query = Product::with([
+            'rating_weight_model', 
+            'delivery_type_model', 
+            'unit_model',
+            'product_sale_model',
+            'view_model',
+            'favourite_model' => function($q) use($request){
+                $q->where('user_id', $request->header('User-Id'));
+            },
+        ])->limit(1);
 
-        //sorting
-        $price = $request->price;
-        $date = $request->date;
+        $data = $query->get()->toArray();
 
-        //search keyword
-        $keyword = $request->keyword;
-
-        $query = Product::with(['discount', 'ratings', 'viewers', 'delivery_type'])
-                        ->where('active', 1);
-        
-        //kategori
-        if(!empty($kategoriId)){
-            $query->where('sub_category_id', $kategoriId);
-        }
-
-        //price min - max
-        if(!empty($priceMin) && !empty($priceMax)){
-            $query->where('price', '>=', $priceMin)
-                  ->where('price', '<=', $priceMax);
-        }
-
-        //delivery type (instant or schedule)
-        if(!empty($instant)) {
-            $query->whereHas('delivery_type', function($q) use($instant) {
-                $q->where('instant', $instant);
-            });
-        }
-
-        //ratings
-        if(!empty($rating)) {
-            $query->whereHas('ratings', function($q) use($rating) {
-                $q->where('star', '>=', $rating);
-            });
-        }
-
-        //keyword
-        if(!empty($keyword)){
-            $query->where(function($q) use($keyword) {
-                $q->where('name', 'like', '%'.$keyword.'%')
-                  ->orWhere('tag', 'like', '%'.$keyword.'%');
-            });
-        }
-
-        //order by price
-        if(!empty($price)){
-            $sort = $price ? 'desc':'asc';
-            $query->orderBy('price', $sort);
-        }
-
-        //order by date
-        if(!empty($date)){
-            $sort = $date ? 'desc':'asc';
-            $query->orderBy('created_at', $sort);
-        }
-
-        $data = $query->paginate(10);
-
-        return response()->json($data->toArray(), 200);
+        return response()->json($data, 200);
     }
 
     public function fetch(Request $request)
     {
         $query = Product::with([
-            'discount', 
-            'rating_weight', 
-            'delivery_type', 
-            'unit',
-            'favourite' => function($q) use($request){
+            'rating_weight_model', 
+            'delivery_type_model', 
+            'unit_model',
+            'product_sale_model',
+            'view_model',
+            'favourite_model' => function($q) use($request){
                 $q->where('user_id', $request->header('User-Id'));
             },
-            'product_sale',
         ]);
+
+        //PRODUK TERAKHIR DILIHAT
+        if(!empty($request->seen)){
+            $query->whereHas('viewer', function($q) use($request) {
+                $q->where('user_id', $request->header('User-Id'));
+            });
+        }
 
         //FAVOURITE PRODUK
         if(!empty($request->favourite)){
@@ -120,12 +77,12 @@ class ProductController extends Controller
 
         //TERLARIS FILTER
         if(!empty($request->terlaris)){
-            $query->whereHas('product_sale');
+            $query->whereHas('product_sale_model');
         }       
 
         //DISKON FILTER
         if(!empty($request->diskon)){
-            $query->whereHas('discount');
+            $query->where('discount', '>', 0);
         }
 
         //PALING DI CARI FILTER
@@ -140,7 +97,7 @@ class ProductController extends Controller
 
         //RATING FILTER
         if(!empty($request->rating)){
-            $query->whereHas('rating_weight', function($q) use($request) {
+            $query->whereHas('rating_weight_model', function($q) use($request) {
                 $q->where('rating', '>=', $request->rating);
             });
         }
@@ -148,15 +105,15 @@ class ProductController extends Controller
         //JENIS PENGIRIMAN FILTER
         if(!empty($request->pengiriman)){
             $val = $request->pengiriman == 'instant' ? 1:0;
-            $query->whereHas('delivery_type', function($q) use($val) {
+            $query->whereHas('delivery_type_model', function($q) use($val) {
                 $q->where('instant', $val);
             });
         }
 
         //FILTER HARGA
         if(!empty($request->harga_min) && !empty($request->harga_max)){
-            $query->where('price', '>=', $request->harga_min)
-                  ->where('price', '<=', $request->harga_max);
+            $query->where('last_price', '>=', $request->harga_min)
+                  ->where('last_price', '<=', $request->harga_max);
         }
 
         //SORTING
@@ -179,35 +136,13 @@ class ProductController extends Controller
 
             //SORTING BERDASARKAN HARGA
             if($request->sorting == 'expensive' || $request->sorting == 'cheapest'){
-                $query->orderBy('price', $sort);
+                $query->orderBy('last_price', $sort);
             }
         }
 
         $data = $query->paginate(10);
 
         return response()->json($data->toArray(), 200);
-    }
-
-    public function fetchProductDetail(Request $request)
-    {
-        $query = Product::with([
-            'discount', 
-            'rating_weight', 
-            'delivery_type', 
-            'unit',
-            'favourite' => function($q) use($request){
-                $q->where('user_id', $request->header('User-Id'));
-            },
-            'product_sale',
-            'viewer',
-        ])->where('product_id', $request->product_id);
-
-        $data = $query->first();
-
-        //tambahkan viewer
-        $data->viewer()->increment('view');
-
-        return response()->json($data, 200);
     }
 
     public function toggleFavourite(Request $request)
@@ -228,6 +163,69 @@ class ProductController extends Controller
             $favourite->delete();
         }
 
+        $query = Product::with([
+            'rating_weight_model', 
+            'delivery_type_model', 
+            'unit_model',
+            'product_sale_model',
+            'view_model',
+            'favourite_model' => function($q) use($request){
+                $q->where('user_id', $request->header('User-Id'));
+            },
+        ])->where('product_id', $request->product_id);
+
+        $data = $query->get();
+
+        return response()->json($data->toArray(), 200);
+    }
+
+    public function isFavourite(Request $request)
+    {
+        $favourite = Favourite::where('product_id', $request->product_id)
+                              ->where('user_id', $request->header('User-Id'))
+                              ->first();
+
+        return response()->json($favourite != null ? 1:0, 200);
+    }
+
+    public function addProductViewer($request) 
+    {
+        $data = Viewer::where('relation_id', $request->product_id)
+                      ->where('user_id', $request->header('User-Id'))
+                      ->first();
+
+        if($data != null){
+            $data->increment('view');
+        }else{
+            Viewer::create([
+                'viewer_id' => IDGenerator::generate(),
+                'relation_id' => $request->product_id,
+                'user_id' => $request->header('User-Id'),
+                'view' => 1,
+            ]);
+        }
+
         return response()->json(true, 200);
+    }
+
+    public function fetchProductDetail(Request $request)
+    {
+        //tambahkan viewer
+        $this->addProductViewer($request);
+        
+        $query = Product::with([
+            'rating_weight_model', 
+            'delivery_type_model', 
+            'unit_model',
+            'product_sale_model',
+            'view_model',
+            'favourite_model' => function($q) use($request){
+                $q->where('user_id', $request->header('User-Id'));
+            },
+        ])->where('product_id', $request->product_id);
+
+        $data = $query->get();
+
+        return response()->json($data->toArray(), 200);
     }
 }

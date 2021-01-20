@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
+use Faker\Factory as Faker;
 
 use Carbon\Carbon;
 use App\CustomClass\IDGenerator;
@@ -27,6 +28,7 @@ use App\Favourite;
 use App\Mitra;
 use App\Courier;
 use App\PaymentChannel;
+use App\ProductInfo;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,18 +40,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        PaymentChannel::create([
-            "business_id" => "5e035db9246aad2a269f2bc3",
-            "is_livemode" => false,
-            "channel_code" => "COD",
-            "name" => "COD Bayar di Tujuan",
-            "currency" => "IDR",
-            "channel_category" => "COD",
-            "is_enabled" => true,
-            "fee_fix" => null,
-            "fee_percentage" => null,
-            "image" => 'https://res.cloudinary.com/vjtechsolution/image/upload/v1607616027/mock/cod.png',
-        ]);
+
+
+        // PaymentChannel::create([
+        //     "business_id" => "5e035db9246aad2a269f2bc3",
+        //     "is_livemode" => false,
+        //     "channel_code" => "COD",
+        //     "name" => "COD Bayar di Tujuan",
+        //     "currency" => "IDR",
+        //     "channel_category" => "COD",
+        //     "is_enabled" => true,
+        //     "fee_fix" => null,
+        //     "fee_percentage" => null,
+        //     "image" => 'https://res.cloudinary.com/vjtechsolution/image/upload/v1607616027/mock/cod.png',
+        // ]);
 
         // $search = Search::all();
 
@@ -80,20 +84,24 @@ class DatabaseSeeder extends Seeder
         //     }
         // }
 
-        // for($i=1; $i<=10; $i++){
-        //     $p = Product::inRandomOrder()->first();
-        //     $q = mt_rand(1, 20);
-        //     $r = mt_rand(1000, 300000);
-        //     $t = $r * $q;
-        //     Cart::create([
-        //         'cart_id' => IDGenerator::generate(),
-        //         'user_id' => '5874fd60379fbb7de09507e6d1a2cd1c',
-        //         'product_id' => $p->product_id,
-        //         'price' => $r,
-        //         'qty' => $q,
-        //         'total' => $t,
-        //     ]);
-        // }
+        $pr = Customer::all();
+        foreach($pr as $p){
+            Customer::where('name', '!=', '')->update(['type' => 'customer']);
+            // $r = Customer::where('user_id', $p->user_id)->first();
+            // if($r != null){
+            //     $rand = mt_rand(0,1);
+            //     if($rand > 0){
+            //         $faker = Faker::create();
+            //         $name = $faker->name;
+            //         $phone = $faker->phoneNumber;
+            //         Customer::where('user_id', $r->user_id)
+            //                 ->update([
+            //                     'name' => $name,
+            //                     'phone' => $phone,
+            //                 ]);
+            //     }
+            // }
+        }
 
         // $names = [
         //     "Orange - Canned, Mandarin",

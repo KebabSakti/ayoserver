@@ -60,29 +60,29 @@ class ShoppingCartController extends Controller
 
    public function update(Request $request)
    {
-        DB::transaction(function () use($request) {            
+        DB::transaction(function () use($request) { 
+            Cart::where('user_id', $request->header('User-Id'))->delete();           
             if(!empty($request->item)){
                 foreach($request->item as $item){
-                    $data = Cart::where('cart_id', $item['cart_id'])->first();
+                    $data = Cart::where('product_id', $item['product_id'])->first();
+                    $cartId = ($data != null) ? $data->cart_id : IDGenerator::generate();
+                    $cart = [
+                        'cart_id' => $cartId,
+                        'user_id' => $request->header('User-Id'),
+                        'checked' => true,
+                        'product_id' => $item['product_id'],
+                        'price' => $item['price'],
+                        'qty' => $item['qty'],
+                        'total' => $item['total'],
+                        'note' => $item['note'] ?? null,
+                    ];
 
-                    if($data == null){
-                        Cart::create($item);
-                    }else{
-                        Cart::where('cart_id', $item['cart_id'])
-                            ->update($item);
-                    }
+                    Cart::create($cart);
                 }
             }
         });
 
-        $datas = Cart::with(['product' => function($q) {
-            $q->with('delivery_type', 'unit')->where('active', 1);
-        }])
-        ->where('user_id', $request->header('User-Id'))
-        ->orderBy('id', 'desc')
-        ->get();
-
-        return response()->json($datas->toArray(), 200);
+        return response()->json(true, 200);
    }
 
    public function delete(Request $request, $id)
